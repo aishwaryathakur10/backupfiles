@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome To Quizzle</title>
+    <style >
+    body{  background-image: url("quizimage.jpg");
+  }
+    </style>
+  </head>
+  <body >
+    <style>
+    levelselect{
+       background-color:#6666FF;
+    }
+
+    </style>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+<form name="levelselect">
+    <select name="menu" onChange="location=document.levelselect.menu.options[document.levelselect.menu.selectedIndex].value;" value="GO">
+          <option>Select</option>
+        <option value="file:///D:/Practice/Game/src/difficult.html">Difficult</option>
+        <option value="file:///D:/Practice/Game/src/easy.html">Easy</option>
+    </select>
+</form>

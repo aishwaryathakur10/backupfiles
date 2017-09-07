@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"></meta>
+    <title>Registration Form</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jStorage/0.4.12/jstorage.min.js">
+    </script>
+  </head>
+  <body>
+      <form>
+
+
+
+
+        		<div id="register" class="animate form">
+        			<form  autocomplete="on">
+        				<h1> Sign up </h1>
+
+                <p>
+                  <label for="namesignup" class="name" data-icon="u">Your name</label>
+                  <input id="namesignup" name="namesignup"  type="text" placeholder="name" />
+                </p>
+
+
+        				<p>
+        					<label for="usernamesignup" class="uname" data-icon="u">Your username</label>
+        					<input id="usernamesignup" name="usernamesignup"  type="text" placeholder="username690" />
+        				</p>
+        				<p>
+        					<label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
+        					<input id="emailsignup" name="emailsignup"  type="email" placeholder="mail@mail.com"/>
+        				</p>
+
+                <p>
+
+                      Choose level:
+                      <select id="leveltechno">
+                        <option> --Select--</option>
+                        <option id="pick1" value="Beginner"> Beginner </option>
+                        <option id="pick2" value="Intermediate"> Intermediate </option>
+                        <option id="pick3" value="Advanced"> Advanced </option>
+
+
+                      </select>
+                    </p>
+
+
+
+
+                      <p class="date_reg">
+                        Date of registration:
+                        <input id="date_reg" type="date">
+                      </p>
+
+                      <br>
+                        <button id="addButton">Add</button>
+
+
+
+
+                        <table id="reg_table" border="1">
+                          <tr id="0">
+                            <th scope="col">Name</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Level</th>
+                            <th scope="col">Technology</th>
+                            <th scope="col">Date</th>
+                          </tr>
+
+
+                        </table>
+
+
+        			</form>
+        		</div>
+
+  </body>
+  <script>
+    var savedRecordsArray = [];
+
+    var initialize = function(){
+        $("#addButton").on("click",addRecord);
+        loadSavedRecords();
+        var rowid;
+    };
+
+      var count=1;
+      var edit=true;
+
+
+    var addRecord = function(event){
+        //add to ui
+        if(edit)
+        {
+        var name = $("#namesignup").val();
+        var username = $("#usernamesignup").val();
+        var email = $("#emailsignup").val();
+        var level = $("#leveltechno").val();
+
+
+        var date = $("#date_reg").val();
+
+        var record=[name,username,email,level,date];
+
+
+        showRecord(record);
+
+        //add to recordSet
+        savedRecordsArray.push(record);
+
+        //save to database
+        save();
+
+
+      }
+
+        if(!edit)
+        {
+
+          console.log("hii");
+          var rowid;
+          var nm = $("#namesignup").val();
+          var uname = $("#usernamesignup").val();
+          var mail = $("#emailsignup").val();
+          var lev = $("#leveltechno").val();
+
+
+          var dt = $("#date_reg").val();
+
+
+          document.getElementById("#reg_table").rows[rowid].cells[0].innerHTML=nm;
+          document.getElementById("#reg_table").rows[rowid].cells[1].innerHTML=uname;
+          document.getElementById("#reg_table").rows[rowid].cells[2].innerHTML=mail;
+          document.getElementById("#reg_table").rows[rowid].cells[3].innerHTML=lev;
+
+          document.getElementById("#reg_table").rows[rowid].cells[4].innerHTML=dt;
+
+          edit=true;
+
+        }
+
+    return false;
+    };
+
+    var save = function(){
+        $.jStorage.set("reg_table", savedRecordsArray );
+    }
+
+    var loadSavedRecords = function(){
+        savedRecordsArray = $.jStorage.get("reg_table") || [] ;
+        for( let index=0 ; index<savedRecordsArray.length ; ++index ) {
+            showRecord( savedRecordsArray[index] );
+
+        }
+    };
+
+
+    var showRecord = function(record){
+        //this line creates a new dom element
+
+        var recordTemplate = $(`<tr id="${count}">'<td>${record[0]}</td><td>${record[1]}</td><td>${record[2]}</td><td>${record[3]}</td><td>${record[4]}</td><td><input type="button" value="Delete" onclick="deleteRow(this)"</td> <td><button class="edit_row" >Edit</button></td></tr>`);
+        $("#reg_table").append(recordTemplate);
+          count++;
+    };
+
+
+    function deleteRow(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("reg_table").deleteRow(i);
+        savedRecordsArray.pop(i);
+
+        //save to database
+        save();
+
+
+    }
+
+    $("#reg_table").on('click','.edit_row', function(e){
+      rowid=$(this).closest('tr').attr('id');
+
+      $('#namesignup').val(document.getElementById("reg_table").rows[rowid].cells[0].innerHTML);
+      $('#usernamesignupname').val(document.getElementById("reg_table").rows[rowid].cells[1].innerHTML);
+      $('#emailsignup').val(document.getElementById("reg_table").rows[rowid].cells[2].innerHTML);
+      $('#leveltechno').val(document.getElementById("reg_table").rows[rowid].cells[3].innerHTML);
+
+      $('#date_reg').val(document.getElementById("reg_table").rows[rowid].cells[4].innerHTML);
+
+
+
+
+      edit=false;
+      save();
+    });
+
+
+
+
+
+
+
+
+
+
+    $(document).ready(initialize)
+  </script>
+</html>

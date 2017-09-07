@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mini Project</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jStorage/0.4.12/jstorage.min.js">
+    </script>
+  </head>
+  <body>
+  <h1> Student Registration Form </h1>
+<form id="form" action="#">
+  <label> Name: </label><br>
+  <input type="text" placeholder="Enter Your Name"id="name"required ></input><br>
+  <label> Roll Number </label><br>
+   <input type="=number" placeholder="Enter Your Roll number"id="employeeid" required></input><br>
+  <label>State </label><br>
+  <select id="state">
+    <option> Rajasthan </option>
+    <option> Uttar Pradesh</option>
+    <option> Maharashtra </option>
+    <option> Punjab </option>
+    <option> Madhya Pradesh </option>
+  </select><br>
+
+<label> Date of Birth </label>
+
+<input type="date" name="bday" id="date">
+</input><br><br>
+</form>
+<table border="1" id="tab">
+  <tr id="0">
+    <th> Name </th>
+    <th> Id </th>
+    <th> State </th>
+
+    <th>  Date  of Birth</th>
+  </tr>
+
+</table>
+<button id="addValue">Add</button>
+
+
+
+
+
+  <script>
+  var savedRecordsArray = [];
+
+      var initialize = function(){
+          $("#addValue").on("click",addRecord);
+          loadSavedRecords();
+      };
+var xy=1;
+var edit=true;
+var rid;
+      var addRecord = function(event){
+      if(edit){
+
+
+          //add to ui
+          var enteredValue = $("#name").val();
+          var result=$("#employeeid").val();
+           var state=$("#state").val();
+           var date=$("#date").val();
+          var record       = [enteredValue,result,state,date];
+          showRecord(record);
+		   xy++;
+
+          //add to recordSet
+          savedRecordsArray.push(record);
+
+
+          //save to database
+          save();
+          return false;
+        }
+
+
+
+
+        if(!edit)
+        {    edit=true;
+
+       var name = $("#name").val();
+
+
+        var id=$("#employeeid").val();
+         var st=$("#state").val();
+         var de=$("#date").val();
+
+        document.getElementById("tab").rows[rid].cells[0].innerHTML=name;
+         document.getElementById("tab").rows[rid].cells[1].innerHTML=id;
+         document.getElementById("tab").rows[rid].cells[2].innerHTML=st;;
+         document.getElementById("tab").rows[rid].cells[3].innerHTML=de;
+
+
+
+}
+return false;
+};
+      var save = function(){
+          $.jStorage.set("tab", savedRecordsArray );
+      }
+
+      var loadSavedRecords = function(){
+          savedRecordsArray = $.jStorage.get("tab") || [] ;
+          for( let index=0 ; index<savedRecordsArray.length ; ++index ) {
+              showRecord( savedRecordsArray[index] );
+          }
+
+
+      };
+
+      var showRecord = function(record){
+          //this line creates a new dom element
+          var recordTemplate = $(`<tr id="${xy}"><td>${record[0]}</td><td>${record[1]}</td><td>${record[2]}</td><td>${record[3]}</td><td><button class="clearRow">Delete</button></td><td><button class="editRow">Edit</button></td></tr>`);
+          $("#tab").append(recordTemplate);
+      };
+     $("#tab").on('click','.clearRow',function(e){
+    $(this).closest("tr").remove();
+    savedRecordsArray.pop(this);
+    save();
+});
+
+$("#tab").on('click','.editRow',function(e){
+
+ rid=$(this).closest('tr').attr('id');
+$("#name").val(document.getElementById("tab").rows[rid].cells[0].innerHTML);
+$("#employeeid").val(document.getElementById("tab").rows[rid].cells[1].innerHTML);
+$("#state").val(document.getElementById("tab").rows[rid].cells[2].innerHTML);
+$("#date").val(document.getElementById("tab").rows[rid].cells[3].innerHTML);
+
+
+edit=false;
+save();
+
+
+
+
+});
+
+
+
+
+
+
+
+
+      $(document).ready(initialize)
+
+
+
+
+
+
+  </script>
+</body>
+</html>

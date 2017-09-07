@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"></meta>
+    <title>Todo</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jStorage/0.4.12/jstorage.min.js">
+    </script>
+  </head>
+  <body>
+      <form>
+        Task : <input id="todoValue" type="text" value="" ></input>
+        <button id="addButton">Add</button>
+
+        <!-- Here we will have the table -->
+        <ul id="savedTodos">
+
+        </ul>
+      </form>
+  </body>
+  <script>
+    var savedRecordsArray = [];
+
+    var initialize = function(){
+        $("#addButton").on("click",addRecord);
+        loadSavedRecords();
+    };
+
+    var addRecord = function(event){
+        //add to ui
+        var enteredValue = $("#todoValue").val();
+        var record       = { "value" : enteredValue };
+        showRecord(record);
+
+        //add to recordSet
+        savedRecordsArray.push(record);
+
+        //save to database
+        save();
+        return false;
+    };
+
+    var save = function(){
+        $.jStorage.set("todolist", savedRecordsArray );
+    }
+
+    var loadSavedRecords = function(){
+        savedRecordsArray = $.jStorage.get("todolist") || [] ;
+        for( let index=0 ; index<savedRecordsArray.length ; ++index ) {
+            showRecord( savedRecordsArray[index] );
+        }
+    };
+
+
+    var showRecord = function(record){
+        //this line creates a new dom element
+        var recordTemplate = $(`<li>${record.value}</li>`);
+        $("#savedTodos").append(recordTemplate);
+    };
+
+
+    $(document).ready(initialize);
+  </script>
+</html>

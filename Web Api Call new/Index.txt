@@ -1,0 +1,208 @@
+@model IEnumerable<WebApi.Models.StudentTable>
+@{
+    ViewBag.Title = "Index";
+}
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+@Html.ActionLink("Create", "create")
+<h2>Personal Information</h2>
+
+
+
+
+<button id="previousbutton" type="submit">Previous</button>
+<button id="nextbutton" type="submit">Next</button>
+
+
+<table id="tableid" border="1">
+  
+</table>
+
+
+<script>
+    var t = document.getElementById("tableid");
+    var current_url = window.location.href;
+    var a = new URL(current_url);
+    var l = a.searchParams.get("pageno");
+    //  var display = "http://localhost:49750" + window.location.pathname + "?pageno=";
+
+    // var nextOne = display +  ++l;
+
+    // var prevOne = display +  --l;
+
+    $("#nextbutton").click(function () {
+        {
+            debugger;
+            //window.location.replace(nxt);
+            var url = $(this).attr('data-url');
+            bindTable(url);
+        }
+
+    });
+
+
+
+    $("#previousbutton").click(function () {
+        //window.location.replace(prv);
+        debugger;
+        console.log(this);
+        var url = $(this).attr('data-url');
+        bindTable(url);
+
+    });
+
+
+
+
+    $(document).ready(function () {
+        bindTable("http://localhost:49336/api/Student");
+    });
+
+    function bindTable(url) {
+        var t = document.getElementById("tableid");
+        t.innerText = '';
+        var row = t.insertRow(0);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+     
+        cell1.innerHTML = "Delete";
+        cell2.innerHTML = "Edit";
+        cell3.innerHTML = "City";
+        cell4.innerHTML = "Last_Name";
+        cell5.innerHTML = "First_Name";
+        cell6.innerHTML = " Id";
+
+        $.ajax({
+            type: "GET",
+            //url: "http://localhost:49750/api/Student?pageno= +l",
+            url: url,
+
+
+            success: function (data) {
+
+                for (var i = 0; i < data.studentList.length; i++) {
+                    var row = t.insertRow(i + 1);
+                    var cell1 = row.insertCell(row);
+                    var cell2 = row.insertCell(row);
+                    var cell3 = row.insertCell(row);
+                    var cell4 = row.insertCell(row);
+                    var cell5 = row.insertCell(row);
+                    var cell6 = row.insertCell(row);
+          
+                   
+                    cell1.innerHTML = data.studentList[i].id;
+                    cell2.innerHTML = data.studentList[i].First_Name;
+                    cell3.innerHTML = data.studentList[i].Last_Name;
+                    cell4.innerHTML = data.studentList[i].City;
+                   
+
+                    /* for (var i = 0; i<data.record.length; i++) {
+                         var row = t.insertRow(i + 1);
+                         var cell1 = row.insertCell(row);
+                         var cell2 = row.insertCell(row);
+                         var cell3 = row.insertCell(row);
+                         var cell4 = row.insertCell(row);
+                         var cell5 = row.insertCell(row);
+                         var cell6 = row.insertCell(row);
+                         var cell7 = row.insertCell(row);
+                         var cell8 = row.insertCell(row);
+                         var cell9 = row.insertCell(row);
+
+                        // cell1.innerHTML = data.record[i].fname;
+                       //  cell2.innerHTML = data.record[i].lname;
+                        // cell3.innerHTML = data.record[i].email;
+                        // cell4.innerHTML = data.record[i].classname;
+                        // cell5.innerHTML = data.record[i].address;
+                        // cell6.innerHTML = data.record[i].id;
+                        // cell7.innerHTML = data.record[i].phoneno;*/
+
+
+
+                    
+                    var Recordid = data.studentList[i].id;
+
+                    var editlink = '@Html.ActionLink("Edit", "Edit", new { id="0"})'
+                    editlink = editlink.replace('0', Recordid);
+                    cell5.innerHTML = editlink;
+
+                  
+                    var deletelink = '@Html.ActionLink("Delete", "Delete", new { id="0"})'
+                    deletelink = deletelink.replace('0', Recordid);
+                    cell6.innerHTML = deletelink;
+
+
+                }
+
+                /* $("#next").click(function () {
+                     window.location.replace(nextOne);
+                 });
+
+
+                 $("#prev").click(function () {
+                     window.location.replace(prevOne);
+                 });
+
+              /* $('#next').val(function (i, oldval) {
+                    if(row!=null)
+                    return ++l;
+                });*/
+
+                // document.getElementById("Next").innerHTML = data.NextLink;
+
+
+                //  document.getElementById("Next").innerHTML = Nextone;
+
+
+
+
+
+                // document.getElementById("Prev").innerHTML = data.PrevLink;
+                // document.getElementById("Next").innerHTML = data.NextLink;
+                $("#previousbutton").attr("data-url", data.prev_url);
+                $("#nextbutton").attr("data-url", data.next_url);
+
+
+
+
+
+
+            },
+            error: function (err) {
+                alert(err.status + "" + err.statusCode);
+            }
+
+        });
+
+    }
+
+
+
+
+
+    //});
+
+    /*  var data = {
+
+        };
+
+        $.ajax({
+            type: "POST",
+            url: http://localhost:49750/api/Student?pageno= +l,
+            data: data, // your QuickSwitch object
+            success: function (data){
+
+        });
+
+        function successCallbackFunction(result) {
+            // ok!
+        }*/
+
+
+
+
+</script>

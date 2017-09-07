@@ -1,0 +1,6 @@
+c:\users\aishwarya.thakur\documents\visual studio 2013\Projects\AuthenticationAngular\AuthenticationAngular\bin\AuthenticationAngular.dll.config
+c:\users\aishwarya.thakur\documents\visual studio 2013\Projects\AuthenticationAngular\AuthenticationAngular\bin\AuthenticationAngular.dll
+c:\users\aishwarya.thakur\documents\visual studio 2013\Projects\AuthenticationAngular\AuthenticationAngular\bin\AuthenticationAngular.pdb
+c:\users\aishwarya.thakur\documents\visual studio 2013\Projects\AuthenticationAngular\AuthenticationAngular\obj\Debug\AuthenticationAngular.csprojResolveAssemblyReference.cache
+c:\users\aishwarya.thakur\documents\visual studio 2013\Projects\AuthenticationAngular\AuthenticationAngular\obj\Debug\AuthenticationAngular.dll
+c:\users\aishwarya.thakur\documents\visual studio 2013\Projects\AuthenticationAngular\AuthenticationAngular\obj\Debug\AuthenticationAngular.pdb

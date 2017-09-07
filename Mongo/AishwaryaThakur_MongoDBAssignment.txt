@@ -1,0 +1,468 @@
+Create collection Student
+
+ use student                                                                                                                                                              
+switched to db student  
+
+
+Add
+
+> db.student.insert({First_Name:"Aishwarya",Last_Name:"Thakur",Student_Id:"1", Parent_First_Name:"Virendra",Parent_Last_Name:"Thakur",Address:"Indore",Age:"22",Gender:"Fem
+ale",DOB:"10/04/1995",Course:"EBS",Class:"A",Status:"Single"})                                                                                                             
+WriteResult({ "nInserted" : 1 })                                                                                                                                           
+> db.student.insert({First_Name:"Anshita",Last_Name:"Malviya",Student_Id:"2", Parent_First_Name:"Mohan",Parent_Last_Name:"Malviya",Address:"Bhopal",Age:"21",Gender:"Female
+",DOB:"01/03/1996",Course:"EBS",Class:"A",Status:"Single"})                                                                                                                
+WriteResult({ "nInserted" : 1 })                                                                                                                                           
+> db.student.insert({First_Name:"Garima",Last_Name:"Choudhary",Student_Id:"3", Parent_First_Name:"Anil",Parent_Last_Name:"Choudhary",Address:"Neemuch",Age:"22",Gender:"Fem
+ale",DOB:"31/08/1995",Course:"ECS",Class:"B",Status:"Single"})                                                                                                             
+WriteResult({ "nInserted" : 1 })                                                                                                                                           
+> db.student.insert({First_Name:"Akshay",Last_Name:"Panchal",Student_Id:"4", Parent_First_Name:"Ajay",Parent_Last_Name:"Panchal",Address:"Indore",Age:"22",Gender:"Male",DO
+B:"13/04/1995",Course:"EBS",Class:"A",Status:"Single"})                                                                                                                    
+WriteResult({ "nInserted" : 1 })                                                                                                                                           
+> db.student.insert({First_Name:"Rohit",Last_Name:"Khatri",Student_Id:"5", Parent_First_Name:"Aakash",Parent_Last_Name:"Khatri",Address:"Jabalpur",Age:"23",Gender:"Male",D
+OB:"24/04/1995",Course:"ECS",Class:"C",Status:"Single"})                                                                                                                   
+WriteResult({ "nInserted" : 1 })                      
+
+
+
+Edit
+
+> db.student.update({First_Name:'Anshita'},{$set:{First_Name:'Ritika'}})                                                                                                   
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 }) 
+
+
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886c63491dca01f8c3ff5b"),                                                                                                                      
+        "First_Name" : "Ritika",                                                                                                                                           
+        "Last_Name" : "Malviya",                                                                                                                                           
+        "Student_Id" : "2",                                                                                                                                                
+        "Parent_First_Name" : "Mohan",                                                                                                                                     
+        "Parent_Last_Name" : "Malviya",                                                                                                                                    
+        "Address" : "Bhopal",                                                                                                                                              
+        "Age" : "21",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "01/03/1996",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                   
+
+Delete
+> db.student.remove({Student_Id:"2"})                                                                                                                                      
+WriteResult({ "nRemoved" : 1 }) 
+
+
+> db.student.find().pretty()                                                                                                                                               
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886c0c491dca01f8c3ff5a"),                                                                                                                      
+        "First_Name" : "Aishwarya",                                                                                                                                        
+        "Last_Name" : "Thakur",                                                                                                                                            
+        "Student_Id" : "1",                                                                                                                                                
+        "Parent_First_Name" : "Virendra",                                                                                                                                  
+        "Parent_Last_Name" : "Thakur",                                                                                                                                     
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "10/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886ca3491dca01f8c3ff5c"),                                                                                                                      
+        "First_Name" : "Garima",                                                                                                                                           
+        "Last_Name" : "Choudhary",                                                                                                                                         
+        "Student_Id" : "3",                                                                                                                                                
+        "Parent_First_Name" : "Anil",                                                                                                                                      
+        "Parent_Last_Name" : "Choudhary",                                                                                                                                  
+"Address" : "Neemuch",                                                                                                                                             
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "31/08/1995",                                                                                                                                              
+        "Course" : "ECS",                                                                                                                                                  
+        "Class" : "B",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886cfe491dca01f8c3ff5d"),                                                                                                                      
+        "First_Name" : "Akshay",                                                                                                                                           
+        "Last_Name" : "Panchal",                                                                                                                                           
+        "Student_Id" : "4",                                                                                                                                                
+        "Parent_First_Name" : "Ajay",                                                                                                                                      
+        "Parent_Last_Name" : "Panchal",                                                                                                                                    
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Male",                                                                                                                                                 
+        "DOB" : "13/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886d4a491dca01f8c3ff5e"),                                                                                                                      
+        "First_Name" : "Rohit",                                                                                                                                            
+        "Last_Name" : "Khatri",                                                                                                                                            
+        "Student_Id" : "5",                                                                                                                                                
+        "Parent_First_Name" : "Aakash",                                                                                                                                    
+        "Parent_Last_Name" : "Khatri",                                                                                                                                     
+        "Address" : "Jabalpur",                                                                                                                                            
+        "Age" : "23",                                                                                                                                                      
+        "Gender" : "Male",                                                                                                                                                 
+        "DOB" : "24/04/1995",                                                                                                                                              
+        "Course" : "ECS",                                                                                                                                                  
+        "Class" : "C",                                                                                                                                                     
+        "Status" : "Single"                         
+
+
+
+
+
+Report showing below details for all active students Name (First + Last name), Age, DOB, Student ID, Parents, Course, Class .
+
+
+> db.student.find().pretty()                                                                                                                                               
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886c0c491dca01f8c3ff5a"),                                                                                                                      
+        "First_Name" : "Aishwarya",                                                                                                                                        
+        "Last_Name" : "Thakur",                                                                                                                                            
+        "Student_Id" : "1",                                                                                                                                                
+        "Parent_First_Name" : "Virendra",                                                                                                                                  
+        "Parent_Last_Name" : "Thakur",                                                                                                                                     
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "10/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886c63491dca01f8c3ff5b"),                                                                                                                      
+        "First_Name" : "Anshita",                                                                                                                                          
+        "Last_Name" : "Malviya",                                                                                                                                           
+        "Student_Id" : "2",                                                                                                                                                
+        "Parent_First_Name" : "Mohan",                                                                                                                                     
+        "Parent_Last_Name" : "Malviya",                                                                                                                                    
+        "Address" : "Bhopal",                                                                                                                                              
+        "Age" : "21",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "01/03/1996",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886ca3491dca01f8c3ff5c"),                                                                                                                      
+        "First_Name" : "Garima",                                                                                                                                           
+        "Last_Name" : "Choudhary",                                                                                                                                         
+        "Student_Id" : "3",                                                                                                                                                
+        "Parent_First_Name" : "Anil",                                                                                                                                      
+        "Parent_Last_Name" : "Choudhary",                                                                                                                                  
+        "Address" : "Neemuch",                                                                                                                                             
+        "Age" : "22",                                                                                                                                                      
+"Gender" : "Female",                                                                                                                                               
+        "DOB" : "31/08/1995",                                                                                                                                              
+        "Course" : "ECS",                                                                                                                                                  
+        "Class" : "B",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886cfe491dca01f8c3ff5d"),                                                                                                                      
+        "First_Name" : "Akshay",                                                                                                                                           
+        "Last_Name" : "Panchal",                                                                                                                                           
+        "Student_Id" : "4",                                                                                                                                                
+        "Parent_First_Name" : "Ajay",                                                                                                                                      
+        "Parent_Last_Name" : "Panchal",                                                                                                                                    
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Male",                                                                                                                                                 
+        "DOB" : "13/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886d4a491dca01f8c3ff5e"),                                                                                                                      
+        "First_Name" : "Rohit",                                                                                                                                            
+        "Last_Name" : "Khatri",                                                                                                                                            
+        "Student_Id" : "5",                                                                                                                                                
+        "Parent_First_Name" : "Aakash",                                                                                                                                    
+        "Parent_Last_Name" : "Khatri",                                                                                                                                     
+        "Address" : "Jabalpur",                                                                                                                                            
+        "Age" : "23",                                                                                                                                                      
+     "Gender" : "Male",                                                                                                                                                 
+        "DOB" : "24/04/1995",                                                                                                                                              
+        "Course" : "ECS",                                                                                                                                                  
+        "Class" : "C",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}      
+
+
+
+Filters with : Class , Course, Age
+
+
+> db.student.find({"Class":"A"}).pretty()                                                                                                                                  
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886c0c491dca01f8c3ff5a"),                                                                                                                      
+        "First_Name" : "Aishwarya",                                                                                                                                        
+        "Last_Name" : "Thakur",                                                                                                                                            
+        "Student_Id" : "1",                                                                                                                                                
+        "Parent_First_Name" : "Virendra",                                                                                                                                  
+        "Parent_Last_Name" : "Thakur",                                                                                                                                     
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "10/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886cfe491dca01f8c3ff5d"),                                                                                                                      
+        "First_Name" : "Akshay",                                                                                                                                           
+        "Last_Name" : "Panchal",                                                                                                                                           
+        "Student_Id" : "4",                                                                                                                                                
+        "Parent_First_Name" : "Ajay",                                                                                                                                      
+        "Parent_Last_Name" : "Panchal",                                                                                                                                    
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Male",                                                                                                                                                 
+        "DOB" : "13/04/1995",                                                                                                                                              
+"Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                   
+
+
+
+
+
+
+
+
+> db.student.find({"Course":"EBS"}).pretty()                                                                                                                               
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886c0c491dca01f8c3ff5a"),                                                                                                                      
+        "First_Name" : "Aishwarya",                                                                                                                                        
+        "Last_Name" : "Thakur",                                                                                                                                            
+        "Student_Id" : "1",                                                                                                                                                
+        "Parent_First_Name" : "Virendra",                                                                                                                                  
+        "Parent_Last_Name" : "Thakur",                                                                                                                                     
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "10/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886cfe491dca01f8c3ff5d"),                                                                                                                      
+        "First_Name" : "Akshay",                                                                                                                                           
+        "Last_Name" : "Panchal",                                                                                                                                           
+        "Student_Id" : "4",                                                                                                                                                
+        "Parent_First_Name" : "Ajay",                                                                                                                                      
+        "Parent_Last_Name" : "Panchal",                                                                                                                                    
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Male",                                                                                                                                                 
+        "DOB" : "13/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                               
+
+
+
+
+
+> db.student.find({"Age":"22"}).pretty()                                                                                                                                   
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886c0c491dca01f8c3ff5a"),                                                                                                                      
+        "First_Name" : "Aishwarya",                                                                                                                                        
+        "Last_Name" : "Thakur",                                                                                                                                            
+        "Student_Id" : "1",                                                                                                                                                
+        "Parent_First_Name" : "Virendra",                                                                                                                                  
+        "Parent_Last_Name" : "Thakur",                                                                                                                                     
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "10/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886ca3491dca01f8c3ff5c"),                                                                                                                      
+        "First_Name" : "Garima",                                                                                                                                           
+        "Last_Name" : "Choudhary",                                                                                                                                         
+        "Student_Id" : "3",                                                                                                                                                
+        "Parent_First_Name" : "Anil",                                                                                                                                      
+        "Parent_Last_Name" : "Choudhary",                                                                                                                                  
+        "Address" : "Neemuch",                                                                                                                                             
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "31/08/1995",                                                                                                                                              
+        "Course" : "ECS",                                                                                                                                                  
+        "Class" : "B",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886cfe491dca01f8c3ff5d"),                                                                                                                      
+        "First_Name" : "Akshay",                                                                                                                                           
+        "Last_Name" : "Panchal",                                                                                                                                           
+        "Student_Id" : "4",                                                                                                                                                
+        "Parent_First_Name" : "Ajay",                                                                                                                                      
+        "Parent_Last_Name" : "Panchal",                                                                                                                                    
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+"Gender" : "Male",                                                                                                                                                 
+        "DOB" : "13/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                             
+
+
+
+
+
+Filter having below criteria:
+All students above 25 years
+All students below 25 year
+All students between 20 years and 30 years
+
+
+
+
+
+
+> db.student.find({Age:{$gt:"22"}}).pretty()                                                                                                                               
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886d4a491dca01f8c3ff5e"),                                                                                                                      
+        "First_Name" : "Rohit",                                                                                                                                            
+        "Last_Name" : "Khatri",                                                                                                                                            
+        "Student_Id" : "5",                                                                                                                                                
+        "Parent_First_Name" : "Aakash",                                                                                                                                    
+        "Parent_Last_Name" : "Khatri",                                                                                                                                     
+        "Address" : "Jabalpur",                                                                                                                                            
+        "Age" : "23",                                                                                                                                                      
+        "Gender" : "Male",                                                                                                                                                 
+        "DOB" : "24/04/1995",                                                                                                                                              
+        "Course" : "ECS",                                                                                                                                                  
+        "Class" : "C",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59887db5491dca01f8c3ff5f"),                                                                                                                      
+        "First_Name" : "Sharang",                                                                                                                                          
+        "Last_Name" : "Khatri",                                                                                                                                            
+        "Student_Id" : "5",                                                                                                                                                
+        "Parent_First_Name" : "Aakash",                                                                                                                                    
+        "Parent_Last_Name" : "Khatri",                                                                                                                                     
+        "Address" : "Jabalpur",                                                                                                                                            
+        "Age" : "26",                                                                                                                                                      
+        "Gender" : "Male",                                                                                                                                                 
+        "DOB" : "24/04/1995",                                                                                                                                              
+        "Course" : "ECS",                                                                                                                                                  
+        "Class" : "C",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                         
+
+
+
+
+> db.student.find({Age:{$lt:"23"}}).pretty()                                                                                                                               
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886c0c491dca01f8c3ff5a"),                                                                                                                      
+        "First_Name" : "Aishwarya",                                                                                                                                        
+        "Last_Name" : "Thakur",                                                                                                                                            
+        "Student_Id" : "1",                                                                                                                                                
+        "Parent_First_Name" : "Virendra",                                                                                                                                  
+        "Parent_Last_Name" : "Thakur",                                                                                                                                     
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "10/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886ca3491dca01f8c3ff5c"),                                                                                                                      
+        "First_Name" : "Garima",                                                                                                                                           
+        "Last_Name" : "Choudhary",                                                                                                                                         
+        "Student_Id" : "3",                                                                                                                                                
+        "Parent_First_Name" : "Anil",                                                                                                                                      
+        "Parent_Last_Name" : "Choudhary",                                                                                                                                  
+        "Address" : "Neemuch",                                                                                                                                             
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "31/08/1995",                                                                                                                                              
+        "Course" : "ECS",                                                                                                                                                  
+        "Class" : "B",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886cfe491dca01f8c3ff5d"),                                                                                                                      
+        "First_Name" : "Akshay",                                                                                                                                           
+        "Last_Name" : "Panchal",                                                                                                                                           
+        "Student_Id" : "4",                                                                                                                                                
+        "Parent_First_Name" : "Ajay",                                                                                                                                      
+"Parent_Last_Name" : "Panchal",                                                                                                                                    
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Male",                                                                                                                                                 
+        "DOB" : "13/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                 
+
+
+> db.student.find({Age:{$gt:"20",$lt:"23"}}).pretty()                                                                                                                      
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886c0c491dca01f8c3ff5a"),                                                                                                                      
+        "First_Name" : "Aishwarya",                                                                                                                                        
+        "Last_Name" : "Thakur",                                                                                                                                            
+        "Student_Id" : "1",                                                                                                                                                
+        "Parent_First_Name" : "Virendra",                                                                                                                                  
+        "Parent_Last_Name" : "Thakur",                                                                                                                                     
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "10/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886ca3491dca01f8c3ff5c"),                                                                                                                      
+        "First_Name" : "Garima",                                                                                                                                           
+        "Last_Name" : "Choudhary",                                                                                                                                         
+        "Student_Id" : "3",                                                                                                                                                
+        "Parent_First_Name" : "Anil",                                                                                                                                      
+        "Parent_Last_Name" : "Choudhary",                                                                                                                                  
+        "Address" : "Neemuch",                                                                                                                                             
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Female",                                                                                                                                               
+        "DOB" : "31/08/1995",                                                                                                                                              
+        "Course" : "ECS",                                                                                                                                                  
+        "Class" : "B",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                                                                                                          
+{                                                                                                                                                                          
+        "_id" : ObjectId("59886cfe491dca01f8c3ff5d"),                                                                                                                      
+        "First_Name" : "Akshay",                                                                                                                                           
+        "Last_Name" : "Panchal",       
+ "Student_Id" : "4",                                                                                                                                                
+        "Parent_First_Name" : "Ajay",                                                                                                                                      
+        "Parent_Last_Name" : "Panchal",                                                                                                                                    
+        "Address" : "Indore",                                                                                                                                              
+        "Age" : "22",                                                                                                                                                      
+        "Gender" : "Male",                                                                                                                                                 
+        "DOB" : "13/04/1995",                                                                                                                                              
+        "Course" : "EBS",                                                                                                                                                  
+        "Class" : "A",                                                                                                                                                     
+        "Status" : "Single"                                                                                                                                                
+}                                                                                        

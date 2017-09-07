@@ -1,0 +1,40 @@
+﻿
+<div class="row">
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Car</th>
+                    <th>Model</th>
+                    <!--<th>Shipped</th>-->
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="order in car">
+                    <td>
+                        {{ order.id }}
+                    </td>
+                    <td>
+                        {{ order.name }}
+                    </td>
+                    <td>
+                        {{ order.model }}
+                    </td>
+                    <td>
+                        <input type="submit" value="Delete" ng-model="disabled" ng-disabled="isDisabled" ng-click="delrecord(order)">
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-2">
+        &nbsp;
+    </div>
+</div>

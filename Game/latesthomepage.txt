@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quizzle</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  </head>
+  <body>
+      <input id="inputAnswerId" name="inputAnswer" value="">
+      </input>
+      <button id="guessButton">Guess</button>
+
+      <select id="level">
+        <option id="leveleasy" value="easy"> Level Easy </option>
+        <option id="leveldifficult" value="difficult"> Level Difficult </option>
+
+      </select>
+
+
+
+
+
+      <div>
+          <a id="showGreaterHint"  href="#" class="hint-link" data-hint="greater-hint" onClick="return showGreaterHint(event,this)"> Is greater than which number ? </a>
+      </div>
+
+      <div>
+        <a id="showLesserHint"   href="#" class="hint-link" data-hint="lesser-hint" onClick="return showLesserHint(event,this)"> Is less than which number ? </a>
+      </div>
+
+      <div>
+      <a id="showOddHint"      href="#" class="hint-link" data-hint="odd-hint" onClick="return showOddHint(event,this)"> Is Odd ? </a>
+    </div>
+
+    <div>
+      <a id="showEvenHint"      href="#" class="hint-link" data-hint="odd-hint" onClick="return showEvenHint(event,this)">   Is Even ? </a>
+    </div>
+
+    <div>
+      <a id="showMultiple5Hint"  href="#" class="hint-link" data-hint="multiple-5-hint-hint" onClick="return showMultiple5Hint(event,this)"> Is Multiple of 5 ? </a>
+    </div>
+
+    <div>
+      <a id="showMultiple7Hint"  href="#" class="hint-link" data-hint="multiple-7-hint-hint" onClick="return showMultiple7Hint(event,this)"> Is Multiple of 7 ? </a>
+    </div>
+
+    <div>
+      <a id="showPrimeHint"  href="#" class="hint-link" data-hint="prime-hint" onClick="return showPrimeHint(event,this)"> Is Prime ? </a>
+    </div>
+
+    <div>
+      <a id="showUnitHint"  href="#" class="hint-link" data-hint="unit-hint" onClick="return showUnitHint(event,this)"> What is the Number at unit place ? </a>
+    </div>
+
+    <div>
+      <p class="scoretext"> </p>
+    </div>
+
+  </body>
+  <script>
+      var key;
+      var score=100;
+
+      //keep track of last lesser and greater to narrow the guess range
+      var lastLesser;
+      var lastGreater;
+      var hintsTemplates = {
+           "greater-hint"    : "Is greater than "
+          , "lesser-hint"     : "Is less than "
+          , "odd-hint"        : "Is Odd ?"
+          , "even-hint"       : "Is Even ?"
+          , "multiple-5-hint" : "Is Muliple of 5 ?"
+          , "multiple-7-hint" : "Is Muliple of 7 ?"
+          , "prime-hint"       : "Is Prime ?"
+          , "unit-hint"       : "What is the Number at unit place ?"
+      };
+      function initializeGame(){
+          //initialize guess event handlers
+          var guessButtonElement = document.getElementById("guessButton");
+          guessButtonElement.addEventListener("click",validateAnswer);
+          //initialize the key
+          key = Math.round ( Math.random() * 100 );
+            var   range;
+
+      }
+      //hint specific functions
+      function showGreaterHint(event,element){
+          var randomKeyToAdd = Math.round ( Math.random() * range );
+          var lesserNumber  = key - randomKeyToAdd;
+          var hint           = hintsTemplates["greater-hint"] + lesserNumber;
+          score=score-10;
+          realscore();
+          alert(hint);
+
+        //
+          var optionselected=document.getElementById("level").value;
+
+          if(optionselected=="easy")
+          {
+            alert("Easy");
+            range=range-5;
+            console.log("Easy Level"+range);
+        }else{
+          alert("difficult");
+          range=range+10;
+          console.log("Difficul Level"+range);
+        }
+
+
+
+
+
+
+      };
+
+      function showLesserHint(event,element){
+          var randomKeyToAdd = Math.round ( Math.random() * 20 );
+          var greaterNumber  = key + randomKeyToAdd;
+          var hint          = hintsTemplates["lesser-hint"] + greaterNumber;
+          score=score-10;
+          realscore();
+          alert(hint);
+
+          console.log("Easy Level"+range);
+          var optionselected=document.getElementById("level").selectedindex;
+
+          if(document.getElementByTagName("option")[optionselected].value=="easy")
+          {
+            range=range-5;
+        }
+
+
+
+          console.log("Difficult Level"+range);
+          var optionselected=document.getElementById("level").selectedindex;
+
+          if(document.getElementByTagName("option")[optionselected].value=="difficult")
+          {
+            range=range+10;
+        }
+      };
+
+      function showOddHint(event,element){
+        var hint;
+      if(!(key%2==0))
+        {
+          hint="Yes, it is.";
+          score=score-10;
+          alert(hint);
+        }
+        else {
+          hint="No";
+          score=score-10;
+          alert(hint);
+        }
+        realscore();
+        };
+
+        function showEvenHint(event,element){
+          var hint;
+        if(key%2==0)
+          {
+            hint="Yes, it is.";
+            score=score-10;
+            alert(hint);
+          }
+          else {
+            hint="No";
+            score=score-10;
+            alert(hint);
+          }
+          realscore();
+          };
+
+
+          function showMultiple5Hint (event,element){
+              if(key%5==0)
+              {
+                hint="Yes, it is.";
+                score=score-10;
+                alert(hint);
+              }
+              else {
+                hint="No";
+                score=score-10;
+                alert(hint);
+              }
+              realscore();
+
+          };
+
+
+                    function showMultiple7Hint (event,element){
+                        if(key%7==0)
+                        {
+                          hint="Yes, it is.";
+                          score=score-10;
+                          alert(hint);
+                        }
+                        else {
+                          hint="No";
+                          score=score-10;
+                          alert(hint);
+                        }
+                        realscore();
+                    };
+
+                    function showPrimeHint (event,element){
+
+                    var i;
+                    var flag = 0;
+                    for(i=2; i<key; i++){
+                      if (key%i==0)
+                      flag=1;
+                        break;
+                      }
+                      if(flag==1)
+                      {
+                        var hint= "Not a Prime number";
+                        alert(hint);
+                      }
+                      else {
+                        var hint= "It is a Prime number";
+                        alert(hint)
+                      }
+                      score=score-10;
+
+                      realscore();
+                  };
+
+
+
+  function showUnitHint(event,element){
+    var ones = Math.floor(key%10);
+    alert(ones);
+      score=score-10;
+
+
+realscore();
+
+
+  };
+
+
+  function realscore(){
+       $(".scoretext").text("Your Score Is "+score);
+  }
+
+	  function validateAnswer(event){
+		   var inputAnswerElement = document.getElementById("inputAnswerId");
+		   var answerInt = parseInt(inputAnswerElement.value);
+		   if( key === answerInt && score>0){
+
+			   alert(" You Win :) Your Score is:"+score);
+		   } else {
+			   alert(" Try Again :( "+score);
+		   }
+		   return false;
+       realscore();
+	 };
+
+      window.onload = initializeGame;
+  </script>
+</html>
